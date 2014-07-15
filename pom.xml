@@ -12,9 +12,16 @@
     <properties>
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <jsr.version>0.6-SNAPSHOT</jsr.version>
     </properties>
     
-    
+      <repositories>
+        <repository>
+            <id>unitsofmeasurement-github-repo</id>
+            <name>Local repository for Unit-API or other Units of Measurement artifacts we depend on</name>
+            <url>https://github.com/unitsofmeasurement/repository</url>
+        </repository>
+    </repositories>
     <scm>
         <connection>scm:git:git@github.com:jugchennaiadoptjava/jsr363-showcase.git</connection>
         <developerConnection>scm:git:git@github.com:jugchennaiadoptjava/jsr363-showcase.git</developerConnection>
@@ -40,16 +47,69 @@
         <url>http://jugchennai.in</url>
     </organization>
 
+
     
     <dependencies>
+        <dependency>
+            <groupId>org.unitsofmeasurement</groupId>
+            <artifactId>unit-ri</artifactId>
+            <version>0.3-SNAPSHOT</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+        </dependency>
         <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-web-api</artifactId>
             <version>7.0</version>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>javax.measure</groupId>
+            <artifactId>unit-api</artifactId>
+            <version> ${jsr.version} </version>
+        </dependency>
+       
     </dependencies>
-
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.hamcrest</groupId>
+                <artifactId>hamcrest-all</artifactId>
+                <version>1.1</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>4.11</version>
+                <scope>test</scope>
+                <type>jar</type>
+            </dependency>
+            <dependency>
+                <groupId>javax.measure</groupId>
+                <artifactId>unit-api-core</artifactId>
+                <version>${jsr.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>javax.measure</groupId>
+                <artifactId>unit-api-util</artifactId>
+                <version>${jsr.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>javax.measure</groupId>
+                <artifactId>unit-api-format</artifactId>
+                <version>${jsr.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>javax.measure</groupId>
+                <artifactId>unit-api-quantity</artifactId>
+                <version>${jsr.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
     <build>
         <plugins>
             <plugin>
